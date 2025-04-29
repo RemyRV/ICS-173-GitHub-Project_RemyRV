@@ -1,0 +1,28 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Load the CSV data
+df = pd.read_csv('Land Cover of Areas Burned by 16 Largest Fires of 2018.csv')
+
+# Group by Land Type and sum the Acres
+land_acres = df.groupby('Land Type')['Acres'].sum().reset_index()
+
+# Sort by Acres for better visualization
+land_acres_sorted = land_acres.sort_values('Acres', ascending=False)
+
+plt.figure(figsize=(12,6))
+sns.barplot(
+    data=land_acres_sorted, 
+    x='Acres', 
+    y='Land Type', 
+    hue='Land Type',    # <<< Add this line
+    palette='viridis', 
+    dodge=False,        # <<< Make bars overlap so it looks like the original (no split)
+    legend=False        # <<< Hide unnecessary legend
+)
+plt.title('Acres Burned by Land Type')
+plt.xlabel('Acres Burned')
+plt.ylabel('Land Type')
+plt.tight_layout()
+plt.show()

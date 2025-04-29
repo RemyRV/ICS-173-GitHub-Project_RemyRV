@@ -1,0 +1,42 @@
+import pandas as pd
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
+
+# Load the data
+df = pd.read_csv('Land Cover of Areas Burned by 16 Largest Fires of 2018.csv')
+
+# One-hot encode the Land Type
+df_encoded = pd.get_dummies(df, columns=['Land Type'])
+
+print(df_encoded.head())
+
+# Features = Land Type columns
+X = df_encoded.drop(columns=['_id', 'Acres'])
+
+# Target = Acres burned
+y = df_encoded['Acres']
+
+# Model
+model = LinearRegression()
+model.fit(X, y)
+
+# Predict
+y_pred = model.predict(X)
+
+# Mean Squared Error
+mse = mean_squared_error(y, y_pred)
+
+print(f"Mean Squared Error (MSE): {mse:.2f}")
+
+# Pull coefficients
+coef_df = pd.DataFrame({
+    'Land Type': X.columns,
+    'Coefficient': model.coef_
+})
+
+# Sort by coefficient (higher -> more acres burned associated)
+coef_df_sorted = coef_df.sort_values('Coefficient', ascending=False)
+print(coef_df_sorted)
+
+top_land_type = coef_df_sorted.iloc[0]['Land Type']
+print(f"{top_land_type.replace('Land Type_', '')} was more vulnerable to fires in 2018.")
