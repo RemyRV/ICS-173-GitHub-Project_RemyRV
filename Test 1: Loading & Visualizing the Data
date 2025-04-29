@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Load the CSV data
-df = pd.read_csv('Land Cover of Areas Burned by 16 Largest Fires of 2018.csv')
+df = pd.read_csv('Maui_Acres_Burned_2018.csv')
 
 # Group by Land Type and sum the Acres
 land_acres = df.groupby('Land Type')['Acres'].sum().reset_index()
