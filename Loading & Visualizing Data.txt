@@ -26,3 +26,9 @@ plt.xlabel('Acres Burned')
 plt.ylabel('Land Type')
 plt.tight_layout()
 plt.show()
+
+# Save graph image
+plt.savefig('/workspaces/ICS-173-GitHub-Project_RemyRV/acres_burned_by_land_type.png')
+
+# Save data
+land_acres_sorted.to_csv('/workspaces/ICS-173-GitHub-Project_RemyRV/acres_burned_by_land_type.txt', sep='\t', index=False)
