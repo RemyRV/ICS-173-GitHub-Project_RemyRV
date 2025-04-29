@@ -1,0 +1,14 @@
+Land Type	Acres
+Non-Native Grassland	13023
+Non-native Grassland	4005
+Sparse Vegetation	3828
+Native Shrubland	3749
+Abandoned Agriculture	3332
+Non-Native Shrubland	3061
+Native Forest	2440
+Non-native Shrubland	1480
+Non-Native Forest	1155
+Developed	948
+Non-native Forest	400
+Low-Intensity Developed	103
+Sparse/Unvegetated	46
